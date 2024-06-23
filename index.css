@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+.main {
+  height: 100%;
+  width: 100%;
+  background-color: lightcyan;
+}
+.projects-section {
+  width: 100%;
+  padding: 10px 50px;
+}
+.per-project {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  height: 50px;
+  width: 100%;
+  background-color: black;
+}
+.content {
+  height: 100px;
+  width: 100%;
+  background-color: antiquewhite;
+}

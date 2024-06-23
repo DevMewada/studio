@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Project</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
@@ -15,6 +16,14 @@
             <button type="submit" name="submit">Search</button>
         </div>
     </form>
+    <div class="main">
+        <div class="projects-section">
+            <div class="per-project">
+                <div class="title"></div>
+                <div class="content"></div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
