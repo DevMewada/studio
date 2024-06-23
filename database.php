@@ -12,8 +12,8 @@ catch(mysqli_sql_exception){
     echo "Could not connect to database";
 }
 
-if($connection) {
-    echo "connected to the database";
-}
+// if($connection) {
+//     echo "connected to the database";
+// }
 
 ?>
