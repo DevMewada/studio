@@ -16,14 +16,14 @@
             <button type="submit" name="submit">Search</button>
         </div>
     </form>
-<!--     <div class="main">
+    <div class="main">
         <div class="projects-section">
             <div class="per-project">
                 <div class="title"></div>
                 <div class="content"></div>
             </div>
         </div>
-    </div> -->
+    </div>
 </body>
 
 </html>
@@ -86,3 +86,5 @@ if (isset($_POST["submit"])) {
 }
 
 ?>
+
+
