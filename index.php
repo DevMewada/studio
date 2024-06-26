@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+    <?php
+    include("database.php");
+    ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Project</title>
-    <link rel="stylesheet" href="index.css">
-</head>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Edit Project</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
 
 <body>
     <form action="index.php" method="POST">
@@ -16,14 +20,14 @@
             <button type="submit" name="submit">Search</button>
         </div>
     </form>
-    <div class="main">
+<!--     <div class="main">
         <div class="projects-section">
             <div class="per-project">
                 <div class="title"></div>
                 <div class="content"></div>
             </div>
         </div>
-    </div>
+    </div> -->
 </body>
 
 </html>
@@ -47,44 +51,49 @@ if (isset($_POST["submit"])) {
             $projects = "SELECT * FROM projects WHERE title LIKE '%$query%' AND YEAR(pSdate) = $year ";
         }
 
-        $result = mysqli_query($connection, $projects);
+                        $result = mysqli_query($connection, $projects);
 
-        if (mysqli_num_rows($result) > 0) {
-            echo "<table border>";
-            echo "<tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Students Req</th>
-                    <th>Short Desc</th>
-                    <th>Tech Desc</th>
-                    <th>App start</th>
-                    <th>App end</th>
-                    <th>Proj start</th>
-                    <th>Proj end</th>
-                    <th>Status</th>
-                    <th>Type</th>
-                    <th>Extra</th>";
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>" . $row["pID"] . "</td>
-                    <td>" . $row["title"] . "</td>
-                    <td>" . $row["studentReq"] . "</td>
-                    <td>" . $row["sDesc"] . "</td>
-                    <td>" . $row["techDesc"] . "</td>
-                    <td>" . $row["appSdate"] . "</td>
-                    <td>" . $row["appEdate"] . "</td>
-                    <td>" . $row["pSdate"] . "</td>
-                    <td>" . $row["pEdate"] . "</td>
-                    <td>" . $row["status"] . "</td>
-                    <td>" . $row["iType"] . "</td>
-                    <td>" . $row["extra"] . "</td></tr>";
-            }
-            echo "</table>";
-        } else {
-            echo "No results found";
-        }
-    }
-}
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<div class='project'>";
+                                echo "<h3>" . ($row["title"]) . "</h3>";
+                                echo "<p>ID: " . htmlspecialchars($row["pID"]) . "</p>";
+                                echo "<p>Students Required: " . htmlspecialchars($row["studentReq"]) . "</p>";
+                                echo "<p>Short Description: " . htmlspecialchars($row["sDesc"]) . "</p>";
+                                echo "<p>Detailed Description: </p>";
+                                // Display detail_desc records as a list
+                                if (!empty($row['pDesc'])) {
+                                    $descriptions = explode('<br>', $row['pDesc']);
+                                    echo "<ul>";
+                                    foreach ($descriptions as $desc) {
+                                        echo "<li>" . htmlspecialchars_decode($desc) . "</li>";
+                                    }
+                                    echo "</ul>";
+                                }
+                                echo "<p>Technical Description: " . htmlspecialchars($row["techDesc"]) . "</p>";
+                                echo "<p>Application Start Date: " . htmlspecialchars($row["appSdate"]) . "</p>";
+                                echo "<p>Application End Date: " . htmlspecialchars($row["appEdate"]) . "</p>";
+                                echo "<p>Project Start Date: " . htmlspecialchars($row["pSdate"]) . "</p>";
+                                echo "<p>Project End Date: " . htmlspecialchars($row["pEdate"]) . "</p>";
+                                if ($row["status"] == 1) {
+                                    // echo "<p>Active</p>";
+                                    $status = "Active";
+                                } else {
+                                    // echo "<p>Deactive</p>";
+                                    $status = "Inactive";
+                                }
+                                echo "<p>Status: " . $status . "</p>";
+                                echo "<p>Type: " . htmlspecialchars($row["iType"]) . "</p>";
+                                echo "<p>Extra: " . htmlspecialchars($row["extra"]) . "</p>";
+                                echo "</div>";
+                            }
+                            echo "</table>";
+                        } else {
+                            echo "No results found";
+                        }
+                    }
+                }
 
 ?>
 
-
+</html>
