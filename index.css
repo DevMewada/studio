@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 html,
 body {
@@ -15,19 +16,91 @@ ul {
 .main {
   /* height: 100%; */
   width: 100%;
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
 }
 .search {
-  height: 7vh;
+  height: 10vh;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+}
+.search form {
+  height: 100%;
   width: 100%;
   /* background-color: red; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.search-bar {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.search-bar input,
+.search form button {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px;
+  outline: none;
+}
+.search form input[type="search"] {
+  width: 30vw;
+}
+.search form button {
+  border-radius: 5px;
+  border: none;
+  width: 5vw;
+  cursor: pointer;
+}
+.search form button:hover {
+  border-radius: 5px;
+  border: none;
+  background-color: #ccc;
 }
 .project-section {
   width: 100%;
-  /* background-color: green; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  gap: 10px;
 }
-.project {
-  /* background-color: aqua; */
-  border: 1px solid black;
-  margin-bottom: 10px;
+.accordian {
+  width: 80vw;
+}
+.accordian-title {
+  background-color: blue;
+  padding: 10px 15px;
+}
+.accordian-child {
+  width: 100%;
+  /* padding: 20px; */
+  border: 1px solid #ccc;
+  border-radius: 7px;
+}
+.accordian-child label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 20px;
+  border-radius: 7px;
+}
+.accordian-child label:hover {
+  background-color: #ccc;
+}
+.accordian-child input[type="radio"] {
+  display: none;
+}
+.content {
+  margin: 0 20px;
+}
+.accordian-child .content {
+  /* background-color: red; */
+  max-height: 0;
+  overflow: hidden;
+}
+.accordian input[type="radio"]:checked + label + .content {
+  max-height: fit-content;
 }
