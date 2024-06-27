@@ -90,7 +90,7 @@ ul {
 .accordian-child label:hover {
   background-color: #ccc;
 }
-.accordian-child input[type="radio"] {
+.accordian-child input[type="checkbox"] {
   display: none;
 }
 .content {
@@ -101,6 +101,6 @@ ul {
   max-height: 0;
   overflow: hidden;
 }
-.accordian input[type="radio"]:checked + label + .content {
+.accordian input[type="checkbox"]:checked + label + .content {
   max-height: fit-content;
 }

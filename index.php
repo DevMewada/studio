@@ -63,8 +63,8 @@ include("database.php");
                             echo "<div class='accordian'>";
                             echo "<div class='accordian-child'>";
                             $id = $row["pID"];
-                            echo "<input type='radio' name='accordian' id='<?php echo(`$id`); ?>'>";
-                            echo "<label for='<?php echo(`$id`); ?>'>" . ($row["title"]) . "</label>";
+                            echo "<input type='checkbox' id='accordian-<?php echo(`$id`); ?>'>";
+                            echo "<label for='accordian-<?php echo(`$id`); ?>'>" . ($row["title"]) . "</label>";
                             echo "<div class='content'>";
                             echo "<p>Students Required: " . htmlspecialchars($row["studentReq"]) . "</p>";
                             echo "<p>Short Description: " . htmlspecialchars($row["sDesc"]) . "</p>";
@@ -98,6 +98,21 @@ include("database.php");
                 }
             }
             ?>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.accordian input[type="checkbox"]').forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                if (checkbox.checked) {
+                    document.querySelectorAll('.accordian input[type="checkbox"]').forEach(function(otherCheckbox) {
+                        if (otherCheckbox !== checkbox) {
+                            otherCheckbox.checked = false;
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
