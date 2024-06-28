@@ -120,66 +120,61 @@ include("database.php");
 
     <!-- Modal Structure -->
     <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Edit Form</h2>
-            <form id="editForm" action="update_project.php" method="POST">
-                <label for="pID">Project ID:</label>
-                <input type="text" id="pID" name="pID" readonly><br><br>
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Edit Form</h2>
+        <form id="editForm" action="update_project.php" method="POST">
+            <label for="pID">Project ID:</label>
+            <input type="text" id="pID" name="pID" readonly><br><br>
 
-                <label for="title">Title:</label>
-                <input type="text" id="title" name="title"><br><br>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title"><br><br>
 
-                <label for="studentReq">Student Requirement:</label>
-                <input type="text" id="studentReq" name="studentReq"><br><br>
+            <label for="studentReq">Student Requirement:</label>
+            <input type="text" id="studentReq" name="studentReq"><br><br>
 
-                <label for="sDesc">Short Description:</label>
-                <textarea id="sDesc" name="sDesc"></textarea><br><br>
+            <label for="sDesc">Short Description:</label>
+            <textarea id="sDesc" name="sDesc"></textarea><br><br>
 
-                <label for="techDesc">Technical Description:</label>
-                <textarea id="techDesc" name="techDesc"></textarea><br><br>
+            <label for="techDesc">Technical Description:</label>
+            <textarea id="techDesc" name="techDesc"></textarea><br><br>
 
-                <label for="appSdate">Application Start Date:</label>
-                <input type="date" id="appSdate" name="appSdate"><br><br>
+            <label for="appSdate">Application Start Date:</label>
+            <input type="date" id="appSdate" name="appSdate"><br><br>
 
-                <label for="appEdate">Application End Date:</label>
-                <input type="date" id="appEdate" name="appEdate"><br><br>
+            <label for="appEdate">Application End Date:</label>
+            <input type="date" id="appEdate" name="appEdate"><br><br>
 
-                <label for="pSdate">Project Start Date:</label>
-                <input type="date" id="pSdate" name="pSdate"><br><br>
+            <label for="pSdate">Project Start Date:</label>
+            <input type="date" id="pSdate" name="pSdate"><br><br>
 
-                <label for="pEdate">Project End Date:</label>
-                <input type="date" id="pEdate" name="pEdate"><br><br>
+            <label for="pEdate">Project End Date:</label>
+            <input type="date" id="pEdate" name="pEdate"><br><br>
 
-                <label for="status">Status:</label>
-                <input type="text" id="status" name="status"><br><br>
+            <label for="status">Status:</label>
+            <input type="text" id="status" name="status"><br><br>
 
-                <label for="iType">Industry Type:</label>
-                <input type="text" id="iType" name="iType"><br><br>
+            <label for="iType">Industry Type:</label>
+            <input type="text" id="iType" name="iType"><br><br>
 
-                <label for="extra">Extra:</label>
-                <textarea id="extra" name="extra"></textarea><br><br>
+            <label for="extra">Extra:</label>
+            <textarea id="extra" name="extra"></textarea><br><br>
 
-                <div id="descContainer">
+            <div id="descContainer">
                 <!-- Detailed Descriptions will be dynamically added here -->
             </div>
 
-                <input type="submit" value="Save Changes">
-            </form>
-        </div>
+            <input type="submit" value="Save Changes">
+        </form>
     </div>
+</div>
 
-    <script>
-    // Get the modal
+
+<script>
     var modal = document.getElementById("myModal");
-
-    // Get the button that opens the modal
     var btns = document.getElementsByClassName("editBtn");
-
-    // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks the button, open the modal 
     for (var i = 0; i < btns.length; i++) {
         btns[i].onclick = function () {
             modal.style.display = "block";
@@ -196,17 +191,15 @@ include("database.php");
             document.getElementById('iType').value = this.getAttribute('data-iType');
             document.getElementById('extra').value = this.getAttribute('data-extra');
             
-            // Clear existing detailed descriptions
             var descContainer = document.getElementById('descContainer');
             descContainer.innerHTML = '';
 
-            // Populate detailed descriptions
             var descs = this.getAttribute('data-pDesc').split('<br>');
             descs.forEach((desc, index) => {
                 var descField = document.createElement('div');
                 descField.innerHTML = `
                     <label for="descOrder-${index}">Description Order:</label>
-                    <input type="text" id="descOrder-${index}" name="descOrder[]" value="${index + 1}" readonly><br><br>
+                    <input type="number" id="descOrder-${index}" name="descOrder[]" value="${index + 1}" min="1"><br><br>
                     <label for="pDesc-${index}">Detailed Description:</label>
                     <textarea id="pDesc-${index}" name="pDesc[]">${desc}</textarea><br><br>
                 `;
@@ -215,19 +208,16 @@ include("database.php");
         }
     }
 
-    // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
         modal.style.display = "none";
     }
 
-    // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     }
 
-    // Handle form submission via AJAX
     document.getElementById('editForm').onsubmit = function (event) {
         event.preventDefault();
         var formData = new FormData(this);
@@ -240,8 +230,7 @@ include("database.php");
         .then(data => {
             alert(data);
             modal.style.display = "none";
-            // Optionally, reload the page or update the UI with new data
-            location.reload(); // or update the specific part of the page with new data
+            location.reload();
         })
         .catch(error => console.error('Error:', error));
     }
