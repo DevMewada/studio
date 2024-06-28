@@ -14,9 +14,7 @@ ul {
   padding-left: 40px;
 }
 .main {
-  /* height: 100%; */
   width: 100%;
-  /* background-color: aliceblue; */
 }
 .search {
   height: 10vh;
@@ -26,7 +24,6 @@ ul {
 .search form {
   height: 100%;
   width: 100%;
-  /* background-color: red; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -44,9 +41,7 @@ ul {
   border-radius: 5px;
   padding: 8px;
   outline: none;
-  /* font-size: 16px; */
   line-height: 20px;
-  /* font-weight: 300; */
   color: #444;
 }
 .search form input[type="search"] {
@@ -59,8 +54,6 @@ ul {
   cursor: pointer;
 }
 .search form button:hover {
-  border-radius: 5px;
-  border: none;
   background-color: #ccc;
 }
 .project-section {
@@ -75,12 +68,10 @@ ul {
   width: 80vw;
 }
 .accordian-title {
-  background-color: blue;
   padding: 10px 15px;
 }
 .accordian-child {
   width: 100%;
-  /* padding: 20px; */
   border: 1px solid #ccc;
   border-radius: 7px;
 }
@@ -101,7 +92,6 @@ ul {
   display: none;
 }
 .accordian-child .content {
-  /* background-color: red; */
   max-height: 0;
   overflow: hidden;
   font-size: 16px;
@@ -116,7 +106,6 @@ ul {
 }
 .short-desc {
   width: 100%;
-  /* background-color: green; */
   padding: 0 0 15px 0;
   border-bottom: 1px solid #ccc;
   color: #444;
@@ -126,7 +115,6 @@ ul {
   color: #444;
 }
 .description {
-  /* background-color: blue; */
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -136,7 +124,6 @@ ul {
 .detailed-desc,
 .tech-desc {
   width: 50%;
-  /* background-color: aqua; */
   font-size: 16px;
   line-height: 20px;
   font-weight: 300;
@@ -154,21 +141,52 @@ ul {
   text-align: center;
   font-weight: 500;
 }
+.other-details {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #ccc;
+}
+.other-details-child {
+  width: 25%;
+  margin: 15px 0;
+  text-align: center;
+  border-right: 1px solid #ccc;
+}
+.other-details:last-child {
+  border: none !important ;
+}
+.other-details-child #odc-head {
+  font-weight: 500;
+}
+.edit-option {
+  width: 100%;
+  padding: 15px 0 0 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  position: relative;
+  gap: 20px;
+}
+.edit-option p {
+  font-weight: 500;
+}
+
 /* edit button styles */
 .editBtn {
   background-color: #4caf50;
   color: white;
   padding: 10px 30px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   border: none;
   cursor: pointer;
   border-radius: 5px;
 }
-
 .editBtn:hover {
   background-color: #45a049;
 }
-
 /* Modal styles */
 .modal {
   display: none;
