@@ -44,6 +44,10 @@ ul {
   border-radius: 5px;
   padding: 8px;
   outline: none;
+  /* font-size: 16px; */
+  line-height: 20px;
+  /* font-weight: 300; */
+  color: #444;
 }
 .search form input[type="search"] {
   width: 30vw;
@@ -85,7 +89,10 @@ ul {
   align-items: center;
   cursor: pointer;
   padding: 20px;
-  border-radius: 7px;
+  border-radius: 5px;
+  color: #222;
+  font-size: 1rem;
+  font-weight: 400;
 }
 .accordian-child label:hover {
   background-color: #ccc;
@@ -93,21 +100,63 @@ ul {
 .accordian-child input[type="checkbox"] {
   display: none;
 }
-.content {
-  margin: 0 20px;
-}
 .accordian-child .content {
   /* background-color: red; */
   max-height: 0;
   overflow: hidden;
+  font-size: 16px;
+  line-height: 23px;
+  font-weight: 300;
+  color: #444;
 }
 .accordian input[type="checkbox"]:checked + label + .content {
   max-height: fit-content;
+  padding: 20px;
+  border-top: 1px solid #ccc;
 }
-
+.short-desc {
+  width: 100%;
+  /* background-color: green; */
+  padding: 0 0 15px 0;
+  border-bottom: 1px solid #ccc;
+  color: #444;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 300;
+  color: #444;
+}
+.description {
+  /* background-color: blue; */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 15px 0;
+  border-bottom: 1px solid #ccc;
+}
+.detailed-desc,
+.tech-desc {
+  width: 50%;
+  /* background-color: aqua; */
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 300;
+  color: #444;
+}
+.detailed-desc {
+  border-right: 1px solid #ccc;
+  padding: 0 15px 0 0;
+}
+.tech-desc {
+  padding: 0 0 0 15px;
+}
+#deatil-desc-head,
+#tech-desc-head {
+  text-align: center;
+  font-weight: 500;
+}
 /* edit button styles */
 .editBtn {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 10px 30px;
   margin-top: 10px;
@@ -120,39 +169,38 @@ ul {
   background-color: #45a049;
 }
 
-    /* Modal styles */
+/* Modal styles */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4);
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
-
