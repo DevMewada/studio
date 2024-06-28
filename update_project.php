@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $status = $_POST["status"];
     $iType = $_POST["iType"];
     $extra = $_POST["extra"];
-    // $descOrder = $_POST["descOrder"];
-    $pDesc = $_POST["pDesc"];
+    $descOrders = $_POST["descOrder"];
+    $pDescs = $_POST["pDesc"];
 
     // Update the project in the database
     $sql = "UPDATE projects 
@@ -23,10 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             WHERE pID='$pID'";
     
     if (mysqli_query($connection, $sql)) {
-        // Update detail_desc table as well
-        $descArray = explode('<br>', $pDesc);
-        foreach ($descArray as $desc) {
-            $updateDesc = "UPDATE detail_desc SET pDesc='$desc' WHERE pID='$pID' AND descOrder='$descOrder'";
+        // Update detail_desc table
+        foreach ($descOrders as $index => $descOrder) {
+            $pDesc = $pDescs[$index];
+            $updateDesc = "UPDATE detail_desc SET pDesc='$pDesc' WHERE pID='$pID' AND descOrder='$descOrder'";
             mysqli_query($connection, $updateDesc);
         }
         echo "Record updated successfully";
@@ -36,3 +36,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 mysqli_close($connection);
 ?>
+
