@@ -139,12 +139,7 @@ include("database.php");
 
     <!-- Modal Structure -->
     <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Edit Form</h2>
-            <form id="editForm" action="update_project.php" method="POST">
-                <label for="pID">Project ID:</label>
-                <input type="text" id="pID" name="pID" readonly><br><br>
+        
     <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Edit Form</h2><br>
@@ -185,10 +180,10 @@ include("database.php");
                 <label for="extra">Extra:</label>
                 <textarea id="extra" name="extra"></textarea><br><br>
 
-                <div id="descContainer">
-                    <!-- Detailed Descriptions will be dynamically added here -->
-                </div>
-
+                <button type="button" id="addDesc">Add Description</button>
+            <div id="descContainer">
+                <!-- Detailed Descriptions will be dynamically added here -->
+            </div>
                 <input type="submit" value="Save Changes">
             </form>
         </div>
@@ -196,85 +191,106 @@ include("database.php");
 
 
     <script>
-        var modal = document.getElementById("myModal");
-        var btns = document.getElementsByClassName("editBtn");
-        var span = document.getElementsByClassName("close")[0];
+            var modal = document.getElementById("myModal");
+            var btns = document.getElementsByClassName("editBtn");
+            var span = document.getElementsByClassName("close")[0];
+            var addDescBtn = document.getElementById('addDesc');
 
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].onclick = function() {
-                modal.style.display = "block";
-                document.getElementById('pID').value = this.getAttribute('data-id');
-                document.getElementById('title').value = this.getAttribute('data-title');
-                document.getElementById('studentReq').value = this.getAttribute('data-studentReq');
-                document.getElementById('sDesc').value = this.getAttribute('data-sDesc');
-                document.getElementById('techDesc').value = this.getAttribute('data-techDesc');
-                document.getElementById('appSdate').value = this.getAttribute('data-appSdate');
-                document.getElementById('appEdate').value = this.getAttribute('data-appEdate');
-                document.getElementById('pSdate').value = this.getAttribute('data-pSdate');
-                document.getElementById('pEdate').value = this.getAttribute('data-pEdate');
-                document.getElementById('status').value = this.getAttribute('data-status');
-                document.getElementById('iType').value = this.getAttribute('data-iType');
-                document.getElementById('extra').value = this.getAttribute('data-extra');
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].onclick = function() {
+                    modal.style.display = "block";
+                    document.getElementById('pID').value = this.getAttribute('data-id');
+                    document.getElementById('title').value = this.getAttribute('data-title');
+                    document.getElementById('studentReq').value = this.getAttribute('data-studentReq');
+                    document.getElementById('sDesc').value = this.getAttribute('data-sDesc');
+                    document.getElementById('techDesc').value = this.getAttribute('data-techDesc');
+                    document.getElementById('appSdate').value = this.getAttribute('data-appSdate');
+                    document.getElementById('appEdate').value = this.getAttribute('data-appEdate');
+                    document.getElementById('pSdate').value = this.getAttribute('data-pSdate');
+                    document.getElementById('pEdate').value = this.getAttribute('data-pEdate');
+                    document.getElementById('status').value = this.getAttribute('data-status');
+                    document.getElementById('iType').value = this.getAttribute('data-iType');
+                    document.getElementById('extra').value = this.getAttribute('data-extra');
 
+                    var descContainer = document.getElementById('descContainer');
+                    descContainer.innerHTML = '';
+
+                    var descs = this.getAttribute('data-pDesc').split('<br>');
+                    descs.forEach((desc, index) => {
+                        addDescriptionField(desc, index);
+                    });
+                }
+            }
+
+            function addDescriptionField(desc = '', index = 0) {
                 var descContainer = document.getElementById('descContainer');
-                descContainer.innerHTML = '';
-
-                var descs = this.getAttribute('data-pDesc').split('<br>');
-                descs.forEach((desc, index) => {
-                    var descField = document.createElement('div');
-                    descField.innerHTML = `
+                var descField = document.createElement('div');
+                descField.className = 'desc-field';
+                descField.innerHTML = `
                     <label for="descOrder-${index}">Description Order:</label>
                     <input type="number" id="descOrder-${index}" name="descOrder[]" value="${index + 1}" min="1"><br><br>
                     <label for="pDesc-${index}">Detailed Description:</label>
                     <textarea id="pDesc-${index}" name="pDesc[]">${desc}</textarea><br><br>
+                    <button type="button" class="removeDesc">Remove Description</button>
+                    <br><br>
                 `;
-                    descContainer.appendChild(descField);
-                });
+                descContainer.appendChild(descField);
+
+                // Add event listener to remove button
+                descField.querySelector('.removeDesc').onclick = function() {
+                    descContainer.removeChild(descField);
+                };
             }
-        }
 
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
+            addDescBtn.onclick = function() {
+                var descContainer = document.getElementById('descContainer');
+                var index = descContainer.children.length;
+                addDescriptionField('', index);
+            };
 
-        window.onclick = function(event) {
-            if (event.target == modal) {
+            span.onclick = function() {
                 modal.style.display = "none";
             }
-        }
 
-        document.getElementById('editForm').onsubmit = function(event) {
-            event.preventDefault();
-            var formData = new FormData(this);
-
-            fetch('update_project.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.text())
-                .then(data => {
-                    alert(data);
+            window.onclick = function(event) {
+                if (event.target == modal) {
                     modal.style.display = "none";
-                    location.reload();
-                })
-                .catch(error => console.error('Error:', error));
-        }
+                }
+            }
 
-        document.addEventListener('DOMContentLoaded', (event) => {
-            var accordions = document.querySelectorAll('.accordion-toggle');
+            document.getElementById('editForm').onsubmit = function(event) {
+                event.preventDefault();
+                var formData = new FormData(this);
 
-            accordions.forEach((accordion) => {
-                accordion.addEventListener('change', (e) => {
-                    if (accordion.checked) {
-                        accordions.forEach((otherAccordion) => {
-                            if (otherAccordion !== accordion) {
-                                otherAccordion.checked = false;
-                            }
-                        });
-                    }
+                fetch('update_project.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        alert(data);
+                        modal.style.display = "none";
+                        location.reload();
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+
+            document.addEventListener('DOMContentLoaded', (event) => {
+                var accordions = document.querySelectorAll('.accordion-toggle');
+
+                accordions.forEach((accordion) => {
+                    accordion.addEventListener('change', (e) => {
+                        if (accordion.checked) {
+                            accordions.forEach((otherAccordion) => {
+                                if (otherAccordion !== accordion) {
+                                    otherAccordion.checked = false;
+                                }
+                            });
+                        }
+                    });
                 });
             });
-        });
+
     </script>
 
 

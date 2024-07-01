@@ -202,23 +202,89 @@ ul {
 }
 
 .modal-content {
+  position: relative;
   background-color: #fefefe;
-  margin: 15% auto;
+  margin: auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  max-width: 600px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
   color: #aaa;
-  float: right;
   font-size: 28px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* add remove buttons */
+#descContainer {
+  margin-bottom: 20px;
+}
+
+.desc-field {
+  position: relative;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.desc-field label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.desc-field textarea {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+.desc-field input[type="number"] {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.removeDesc {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.removeDesc:hover {
+  background-color: #c0392b;
+}
+
+#addDesc {
+  display: block;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+#addDesc:hover {
+  background-color: #2980b9;
 }
