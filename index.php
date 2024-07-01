@@ -103,7 +103,7 @@ include("database.php");
                             echo "<p>Extra: " . htmlspecialchars($row["extra"]) . "</p>";
 
                             //    the edit button modal view
-                            echo "<button class='editBtn' data-id='$id' data-title='" . htmlspecialchars($row["title"]) . "' data-studentReq='" . htmlspecialchars($row["studentReq"]) . "' data-sDesc='" . htmlspecialchars($row["sDesc"]) . "' data-techDesc='" . htmlspecialchars($row["techDesc"]) . "' data-appSdate='" . htmlspecialchars($row["appSdate"]) . "' data-appEdate='" . htmlspecialchars($row["appEdate"]) . "' data-pSdate='" . htmlspecialchars($row["pSdate"]) . "' data-pEdate='" . htmlspecialchars($row["pEdate"]) . "' data-status='" . htmlspecialchars($row["status"]) . "' data-iType='" . htmlspecialchars($row["iType"]) . "' data-extra='" . htmlspecialchars($row["extra"])  . "' data-pDesc='" . htmlspecialchars($row["pDesc"]) . "'>Edit</button>";
+                            echo "<button class='editBtn' data-id='$id' data-title='" . htmlspecialchars($row["title"]) . "' data-studentReq='" . htmlspecialchars($row["studentReq"]) . "' data-sDesc='" . htmlspecialchars($row["sDesc"]) . "' data-techDesc='" . htmlspecialchars($row["techDesc"]) . "' data-appSdate='" . htmlspecialchars($row["appSdate"]) . "' data-appEdate='" . htmlspecialchars($row["appEdate"]) . "' data-pSdate='" . htmlspecialchars($row["pSdate"]) . "' data-pEdate='" . htmlspecialchars($row["pEdate"]) . "' data-status='" . htmlspecialchars($row["status"]) . "' data-iType='" . htmlspecialchars($row["iType"]) . "' data-extra='" . htmlspecialchars($row["extra"])  . "' data-pDesc='" . htmlspecialchars($row["pDesc"]) . "'> Edit </button>";
                             echo "</div>";
                             echo "</div>";
                             echo "</div>";
@@ -122,7 +122,7 @@ include("database.php");
     <div id="myModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Edit Form</h2>
+        <h2>Edit Form</h2><br>
         <form id="editForm" action="update_project.php" method="POST">
             <label for="pID">Project ID:</label>
             <input type="text" id="pID" name="pID" readonly><br><br>
